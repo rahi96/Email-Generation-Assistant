@@ -1,0 +1,21 @@
+Scenario_ID,Intent,Tone,Strategy,Fact_Recall,Tone_Adherence,Format_Adherence
+1,Request detailed project proposal from a vendor,formal,advanced,1.0,5,4
+1,Request detailed project proposal from a vendor,formal,basic,1.0,5,4
+2,Apologize for a 6-hour service outage and communicate resolution,empathetic and urgent,advanced,1.0,4,5
+2,Apologize for a 6-hour service outage and communicate resolution,empathetic and urgent,basic,1.0,4,4
+3,Negotiate a 2-year contract extension with improved terms,firm and professional,advanced,1.0,5,4
+3,Negotiate a 2-year contract extension with improved terms,firm and professional,basic,1.0,5,4
+4,Congratulate a colleague on their promotion to Senior Director,warm and casual,advanced,1.0,5,5
+4,Congratulate a colleague on their promotion to Senior Director,warm and casual,basic,0.75,5,4
+5,Inform a job applicant that they were not selected for the role,polite but decisive,advanced,1.0,5,5
+5,Inform a job applicant that they were not selected for the role,polite but decisive,basic,1.0,5,4
+6,Request budget approval for a new AI-powered customer support tool,direct and analytical,advanced,1.0,5,5
+6,Request budget approval for a new AI-powered customer support tool,direct and analytical,basic,1.0,5,4
+7,Follow up after an initial sales discovery call,enthusiastic and persuasive,advanced,1.0,5,5
+7,Follow up after an initial sales discovery call,enthusiastic and persuasive,basic,1.0,5,4
+8,Announce a new hybrid work policy to all employees,direct and authoritative,advanced,1.0,5,5
+8,Announce a new hybrid work policy to all employees,direct and authoritative,basic,1.0,4,4
+9,Reschedule a client meeting due to an internal conflict,apologetic and professional,advanced,1.0,5,4
+9,Reschedule a client meeting due to an internal conflict,apologetic and professional,basic,1.0,5,4
+10,Ask a teammate from the data team for help with analytics integration,collaborative and respectful,advanced,1.0,5,5
+10,Ask a teammate from the data team for help with analytics integration,collaborative and respectful,basic,1.0,5,4

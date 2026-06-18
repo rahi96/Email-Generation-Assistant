@@ -1,0 +1,1483 @@
+{
+  "metadata": {
+    "run_timestamp": "2026-06-18T19:48:09.434676",
+    "num_scenarios": 10,
+    "strategies": [
+      "advanced",
+      "basic"
+    ]
+  },
+  "metrics_definitions": {
+    "fact_recall": {
+      "name": "Fact Recall & Integration Accuracy",
+      "description": "Measures the percentage of input Key Facts that are semantically present in the generated email using LLM-as-a-Judge evaluation.",
+      "score_range": "0.0 to 1.0",
+      "methodology": "LLM-as-a-Judge (semantic matching)"
+    },
+    "tone_adherence": {
+      "name": "Tone Adherence Score",
+      "description": "Evaluates whether the vocabulary, pacing, and overall style of the email align with the specified target tone.",
+      "score_range": "1 to 5",
+      "methodology": "LLM-as-a-Judge (tone analysis)"
+    },
+    "format_adherence": {
+      "name": "Structural Professionalism & Formatting",
+      "description": "Evaluates email structure (Subject, Greeting, Sign-off) and checks for template placeholders. Combines programmatic rule checks (50%) with LLM-as-a-Judge assessment (50%).",
+      "score_range": "1 to 5",
+      "methodology": "Hybrid: Programmatic regex checks + LLM-as-a-Judge"
+    }
+  },
+  "scenarios": [
+    {
+      "id": 1,
+      "intent": "Request detailed project proposal from a vendor",
+      "key_facts": [
+        "Project is a website redesign for Q1 2025 launch",
+        "Budget ceiling is $75,000",
+        "Need proposal by December 15th",
+        "Must include timeline, cost breakdown, and team composition"
+      ],
+      "tone": "formal",
+      "human_reference": "Subject: Request for Proposal — Website Redesign Project\n\nDear Ms. Patel,\n\nI hope this message finds you well. I am writing to formally request a detailed proposal for our upcoming website redesign project, which we are targeting for a Q1 2025 launch.\n\nTo help guide your proposal, please note that our budget ceiling for this initiative is $75,000. We kindly ask that your submission include a comprehensive timeline, a detailed cost breakdown, and the proposed team composition for the project.\n\nWe would appreciate receiving your proposal by December 15th to allow sufficient time for internal review and decision-making.\n\nPlease do not hesitate to reach out should you require any additional information or clarification. We look forward to reviewing your proposal.\n\nSincerely,\nAlex Chen\nDirector of Digital Strategy",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Request for Detailed Project Proposal for Website Redesign\n\nDear [Vendor's Name],\n\nI hope this message finds you well. I am writing to formally request a detailed proposal for a website redesign project that we are planning to launch in Q1 2025.\n\nThe budget ceiling for this project is set at $75,000. In your proposal, we would appreciate it if you could include a comprehensive timeline, a detailed cost breakdown, and information regarding the composition of your project team. This information will be critical in helping us evaluate your capabilities and alignment with our objectives.\n\nWe kindly request that you submit your proposal by December 15th, allowing us adequate time to review and discuss it internally. Should you have any questions or require further clarification regarding the project specifications, please do not hesitate to reach out.\n\nThank you for your attention to this matter. I look forward to your prompt response.\n\nSincerely,  \n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+          "thinking": "The recipient is likely a vendor or contractor who specializes in web design, and they will expect a clear and structured request for a proposal. The key facts must be presented in a straightforward manner, emphasizing the project’s parameters and requirements without ambiguity. The tone needs to be formal, using professional language and maintaining a respectful distance. \n\nI will structure the email to begin with a subject line that clearly states the intent, followed by a formal greeting. The body will detail the project’s requirements, including the desired launch date, budget, and specific elements to be included in the proposal, ensuring clarity and urgency by mentioning the proposal deadline. Finally, I will conclude with an invitation for questions and a formal sign-off.\n\nStructure: Subject line, formal greeting, detailed body paragraphs, clear closing, and a respectful sign-off.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Project is a website redesign for Q1 2025 launch",
+                  "present": true,
+                  "reasoning": "The email clearly states that the project is a website redesign planned for launch in Q1 2025."
+                },
+                {
+                  "fact": "Budget ceiling is $75,000",
+                  "present": true,
+                  "reasoning": "The email specifies that the budget ceiling for the project is set at $75,000."
+                },
+                {
+                  "fact": "Need proposal by December 15th",
+                  "present": true,
+                  "reasoning": "The email requests the proposal to be submitted by December 15th."
+                },
+                {
+                  "fact": "Must include timeline, cost breakdown, and team composition",
+                  "present": true,
+                  "reasoning": "The email asks for a comprehensive timeline, detailed cost breakdown, and information on team composition in the proposal."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "formal",
+              "detected_tone_description": "The email maintains a formal tone throughout, using polite language and structured requests.",
+              "alignment_reasoning": "The email effectively uses formal language, a clear structure, and appropriate salutations and closings, which align well with the target tone of formality. There are no casual elements present."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Company]",
+                  "[Your Contact Information]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 3,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in before it can be considered production-ready. The body is well-structured with logical flow, but the presence of placeholders detracts from its professionalism."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Request for Detailed Project Proposal for Website Redesign\n\nDear [Vendor's Name],\n\nI hope this message finds you well.\n\nWe are in the process of planning a website redesign project aimed at launching in Q1 2025. We are seeking a detailed proposal from your team to better understand how you can assist us in achieving our goals.\n\nOur budget for this project is capped at $75,000. We kindly ask that your proposal includes the following key components:\n\n1. A comprehensive timeline outlining the phases of the project\n2. A detailed cost breakdown\n3. An overview of the team composition, including key personnel who will be involved\n\nWe would appreciate receiving your proposal by December 15th, as this will allow us to review and make informed decisions promptly.\n\nThank you for your attention to this request. We look forward to your insights and recommendations.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Phone Number]  \n[Your Email Address]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Project is a website redesign for Q1 2025 launch",
+                  "present": true,
+                  "reasoning": "The email clearly states that the project is a website redesign aimed at launching in Q1 2025."
+                },
+                {
+                  "fact": "Budget ceiling is $75,000",
+                  "present": true,
+                  "reasoning": "The email specifies that the budget for the project is capped at $75,000."
+                },
+                {
+                  "fact": "Need proposal by December 15th",
+                  "present": true,
+                  "reasoning": "The email requests the proposal to be received by December 15th."
+                },
+                {
+                  "fact": "Must include timeline, cost breakdown, and team composition",
+                  "present": true,
+                  "reasoning": "The email explicitly asks for a comprehensive timeline, detailed cost breakdown, and overview of team composition."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "formal",
+              "detected_tone_description": "The email maintains a formal tone throughout, using polite language and structured requests.",
+              "alignment_reasoning": "The email effectively uses formal language, a clear structure, and polite requests, aligning well with the target tone of formality. There are no casual elements present, and the overall presentation is professional."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Company]",
+                  "[Your Phone Number]",
+                  "[Your Email Address]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 3,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in before sending, which detracts from its professionalism."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "intent": "Apologize for a 6-hour service outage and communicate resolution",
+      "key_facts": [
+        "Outage lasted from 2:00 AM to 8:00 AM EST on November 10th",
+        "Root cause was a database migration failure",
+        "All affected customers will receive a one-month service credit",
+        "New failover protocols have been implemented to prevent recurrence"
+      ],
+      "tone": "empathetic and urgent",
+      "human_reference": "Subject: Service Disruption on November 10th — Our Apology and Next Steps\n\nDear Valued Customer,\n\nI want to sincerely apologize for the service outage that occurred on November 10th, lasting from 2:00 AM to 8:00 AM EST. I understand how disruptive this was to your operations, and I want you to know that we take full responsibility.\n\nAfter a thorough investigation, we identified the root cause as a database migration failure during a scheduled maintenance window. This is not the level of reliability you expect from us, and we are deeply sorry.\n\nTo make this right, all affected customers will automatically receive a one-month service credit on their next billing cycle. No action is needed on your part.\n\nAdditionally, we have implemented new failover protocols to ensure this type of disruption does not happen again. Our engineering team has conducted extensive testing on these safeguards.\n\nIf you have any questions or concerns, please don't hesitate to reach out to our support team. We are here for you.\n\nWith sincere apologies,\nJamie Rivera\nVP of Customer Success",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Our Apologies for the Service Outage and Next Steps\n\nDear Valued Customer,\n\nI am reaching out to sincerely apologize for the service outage that occurred on November 10th, lasting from 2:00 AM to 8:00 AM EST. I understand how critical our services are to your operations, and I regret any disruptions this may have caused.\n\nThe root cause of the outage was a failure during a database migration. We acted swiftly to resolve the issue, and I am pleased to inform you that all affected customers will receive a one-month service credit as a gesture of our commitment to your satisfaction.\n\nTo prevent this from happening again in the future, we have implemented new failover protocols that will enhance our system's resilience and reliability. Your trust is paramount to us, and we are dedicated to ensuring a seamless experience going forward.\n\nThank you for your understanding and patience during this time. If you have any further questions or require assistance, please do not hesitate to reach out.\n\nWarm regards,\n\nJessica",
+          "thinking": "The recipient is likely a customer who has experienced inconvenience due to the service outage. They will expect a prompt and clear explanation, as well as assurance that the issue has been addressed. I need to acknowledge the frustration caused by the outage, provide specific details about the duration and root cause, and communicate the resolution measures taken (including the service credit and new protocols). The tone must be empathetic to their experience while conveying urgency in resolving the issue. \n\nStructure: \n- Subject: Apologetic and urgent\n- Greeting: Warm and respectful\n- Body: Empathetic opening acknowledging the outage, factual explanation of the outage, resolution details, and assurance regarding future prevention.\n- Sign-off: Warm and reassuring.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 4,
+            "format_adherence": 5
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Outage lasted from 2:00 AM to 8:00 AM EST on November 10th",
+                  "present": true,
+                  "reasoning": "The email clearly states the outage duration and date."
+                },
+                {
+                  "fact": "Root cause was a database migration failure",
+                  "present": true,
+                  "reasoning": "The email specifies that the outage was caused by a failure during a database migration."
+                },
+                {
+                  "fact": "All affected customers will receive a one-month service credit",
+                  "present": true,
+                  "reasoning": "The email mentions that all affected customers will receive a one-month service credit."
+                },
+                {
+                  "fact": "New failover protocols have been implemented to prevent recurrence",
+                  "present": true,
+                  "reasoning": "The email states that new failover protocols have been implemented to enhance system resilience."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 4,
+              "target_tone": "empathetic and urgent",
+              "detected_tone_description": "The email conveys a tone of empathy through sincere apologies and acknowledgment of the customer's potential disruptions. However, the urgency is somewhat lacking as the resolution and preventive measures are presented in a calm manner rather than a more immediate call to action.",
+              "alignment_reasoning": "The email effectively expresses empathy by recognizing the impact of the service outage on the customer and offering a service credit. However, the tone does not fully convey urgency, as it focuses more on reassurance and future prevention rather than immediate action or support. Therefore, it is mostly aligned with minor deviations."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 5,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": false,
+                "placeholders_found": [],
+                "programmatic_score": 1.0
+              },
+              "llm_assessment": {
+                "score": 5,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and a well-structured body with logical paragraph flow. It also includes an appropriate sign-off. There are no placeholders present, making it a complete and professional email."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Important Update: Apology for Service Outage and Resolution\n\nDear Valued Customer,\n\nI hope this message finds you well. I am writing to sincerely apologize for the service outage that occurred on November 10th from 2:00 AM to 8:00 AM EST. We understand how crucial our services are to your operations, and we deeply regret any inconvenience this may have caused.\n\nThe root cause of the outage was a failure during a database migration, which we have thoroughly investigated. I want to assure you that we have implemented new failover protocols to prevent such incidents from happening in the future. Your trust is of utmost importance to us, and we are committed to providing you with the reliable service you expect.\n\nAs a gesture of our appreciation for your understanding and patience during this time, we will be crediting all affected customers with one month of service at no charge. You will see this adjustment reflected in your next billing cycle.\n\nIf you have any questions or need further assistance, please do not hesitate to reach out. Thank you for your understanding as we continue to improve our services.\n\nWarm regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 4,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Outage lasted from 2:00 AM to 8:00 AM EST on November 10th",
+                  "present": true,
+                  "reasoning": "The email explicitly states the outage occurred on November 10th from 2:00 AM to 8:00 AM EST."
+                },
+                {
+                  "fact": "Root cause was a database migration failure",
+                  "present": true,
+                  "reasoning": "The email mentions that the root cause of the outage was a failure during a database migration."
+                },
+                {
+                  "fact": "All affected customers will receive a one-month service credit",
+                  "present": true,
+                  "reasoning": "The email states that all affected customers will receive a one-month service credit."
+                },
+                {
+                  "fact": "New failover protocols have been implemented to prevent recurrence",
+                  "present": true,
+                  "reasoning": "The email confirms that new failover protocols have been implemented to prevent future incidents."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 4,
+              "target_tone": "empathetic and urgent",
+              "detected_tone_description": "The email conveys a tone that is mostly empathetic, acknowledging the inconvenience caused by the service outage, but it lacks a strong sense of urgency.",
+              "alignment_reasoning": "While the email expresses empathy through an apology and assurance of future improvements, it does not convey a pressing urgency for immediate action or resolution. The tone is more reassuring than urgent, which affects its alignment with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Company]",
+                  "[Your Contact Information]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 4,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in, which detracts from its professionalism. The body is well-structured with logical paragraph flow, but the presence of placeholders indicates it is not yet ready for production."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "intent": "Negotiate a 2-year contract extension with improved terms",
+      "key_facts": [
+        "Current contract expires March 31, 2025",
+        "Proposing a 2-year extension through March 2027",
+        "Requesting a 10% volume discount due to increased order quantities",
+        "Willing to commit to minimum quarterly purchase of $200,000"
+      ],
+      "tone": "firm and professional",
+      "human_reference": "Subject: Contract Extension Proposal — Partnership Through 2027\n\nDear Mr. Thompson,\n\nAs our current agreement approaches its expiration on March 31, 2025, I would like to discuss a contract extension that reflects the growth of our partnership.\n\nWe are proposing a 2-year extension, carrying our agreement through March 2027. Given the significant increase in our order quantities over the past year, we believe a 10% volume discount is warranted and mutually beneficial.\n\nIn return, we are prepared to commit to a minimum quarterly purchase of $200,000, providing your team with predictable revenue and strengthened planning capability.\n\nI am confident we can reach terms that serve both organizations well. I would welcome the opportunity to discuss this proposal at your earliest convenience.\n\nRegards,\nMorgan Blake\nHead of Procurement",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Proposal for Contract Extension Negotiation\n\nDear [Recipient's Name],\n\nI hope this message finds you well. As we approach the expiration of our current contract on March 31, 2025, I would like to discuss the possibility of a 2-year extension through March 2027. Our partnership has yielded significant mutual benefits, and I believe an extension would further enhance our collaboration.\n\nGiven the increased order quantities we anticipate, I would like to propose a 10% volume discount. In exchange, we are willing to commit to a minimum quarterly purchase of $200,000. This arrangement not only reflects our growing business together but also positions us both for continued success in the coming years.\n\nI am looking forward to your thoughts on this proposal and would appreciate the opportunity to discuss it further at your earliest convenience.\n\nThank you for considering this extension, and I hope to hear from you soon.\n\nBest regards,  \nAlex",
+          "thinking": "The recipient is likely a procurement manager or executive involved in contract negotiations. They will expect a clear and concise proposal that highlights the benefits for both parties. My email needs to articulate our desire for a contract extension while making a compelling case for improved terms, specifically the 10% volume discount in light of increased order quantities.\n\nThe tone must be firm yet professional, conveying confidence in our proposal without being overly aggressive. I will use straightforward language to ensure clarity and maintain a professional demeanor throughout.\n\nStructure: Subject line to reflect the negotiation focus, a strong opening that establishes context, a body that details the current situation and our proposal, and a closing that invites further discussion.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Current contract expires March 31, 2025",
+                  "present": true,
+                  "reasoning": "The email explicitly states that the current contract expires on March 31, 2025."
+                },
+                {
+                  "fact": "Proposing a 2-year extension through March 2027",
+                  "present": true,
+                  "reasoning": "The email mentions a proposal for a 2-year extension through March 2027."
+                },
+                {
+                  "fact": "Requesting a 10% volume discount due to increased order quantities",
+                  "present": true,
+                  "reasoning": "The email proposes a 10% volume discount in light of increased order quantities."
+                },
+                {
+                  "fact": "Willing to commit to minimum quarterly purchase of $200,000",
+                  "present": true,
+                  "reasoning": "The email states a commitment to a minimum quarterly purchase of $200,000."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "firm and professional",
+              "detected_tone_description": "The email maintains a professional demeanor while clearly articulating a proposal, demonstrating confidence and assertiveness.",
+              "alignment_reasoning": "The email effectively communicates the proposal for a contract extension with a clear rationale and specific terms, reflecting a firm and professional tone. The language used is respectful yet assertive, aligning well with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": false,
+                "placeholders_found": [],
+                "programmatic_score": 1.0
+              },
+              "llm_assessment": {
+                "score": 4,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains a placeholder for the recipient's name, which detracts from its professionalism. The body is well-structured with logical flow, making it easy to read and understand."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Proposal for Contract Extension and Improved Terms\n\nDear [Recipient's Name],\n\nI hope this message finds you well. As we approach the expiration of our current contract on March 31, 2025, I would like to initiate discussions regarding a potential two-year extension.\n\nWe are keen to extend our partnership through March 2027, and in light of our increased order quantities, I would like to propose a 10% volume discount on our future purchases. Additionally, I am prepared to commit to a minimum quarterly purchase of $200,000 to ensure both parties benefit from this arrangement.\n\nI believe these adjustments will reflect the value of our ongoing collaboration and facilitate continued success. I am looking forward to your thoughts on this proposal and hope to schedule a meeting to discuss it further.\n\nThank you for your attention to this matter. I look forward to your prompt response.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Current contract expires March 31, 2025",
+                  "present": true,
+                  "reasoning": "The email explicitly states the expiration date of the current contract."
+                },
+                {
+                  "fact": "Proposing a 2-year extension through March 2027",
+                  "present": true,
+                  "reasoning": "The email mentions a proposal for a two-year extension through March 2027."
+                },
+                {
+                  "fact": "Requesting a 10% volume discount due to increased order quantities",
+                  "present": true,
+                  "reasoning": "The email proposes a 10% volume discount in light of increased order quantities."
+                },
+                {
+                  "fact": "Willing to commit to minimum quarterly purchase of $200,000",
+                  "present": true,
+                  "reasoning": "The email states a commitment to a minimum quarterly purchase of $200,000."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "firm and professional",
+              "detected_tone_description": "The email maintains a firm and professional tone throughout, clearly outlining the proposal and expectations while remaining respectful and courteous.",
+              "alignment_reasoning": "The email effectively communicates the intention to extend the contract and proposes specific terms in a direct manner. The language used is formal and appropriate for a business context, with no casual elements present. The closing expresses anticipation for a prompt response, reinforcing the professional tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Company]",
+                  "[Your Contact Information]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 3,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in before sending, which detracts from its professionalism."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "intent": "Congratulate a colleague on their promotion to Senior Director",
+      "key_facts": [
+        "Colleague's name is Priya and she was promoted to Senior Director of Engineering",
+        "She led the successful cloud migration project last quarter",
+        "She has been with the company for 7 years",
+        "Team celebration is planned for Friday at 4 PM"
+      ],
+      "tone": "warm and casual",
+      "human_reference": "Subject: Huge Congrats, Priya! 🎉\n\nHey Priya,\n\nI just heard the amazing news — Senior Director of Engineering! Honestly, no one deserves this more than you.\n\nWatching you lead the cloud migration project last quarter was truly inspiring. You kept the team motivated, hit every milestone, and made it look effortless. After 7 years of dedication and brilliance, this promotion is long overdue!\n\nI'm so excited to celebrate with you at the team get-together on Friday at 4 PM. Bring your best smile — you've earned this moment!\n\nCheers to you and everything ahead,\nSam",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Congratulations on Your Promotion, Priya!\n\nHi Priya,\n\nI just wanted to take a moment to congratulate you on your well-deserved promotion to Senior Director of Engineering! Your leadership during the cloud migration project last quarter was truly impressive, and it’s clear that your hard work and dedication have been recognized.\n\nHaving been with the company for 7 years, you’ve made such a positive impact on our team and the projects we've tackled together. I couldn't think of anyone more deserving of this advancement.\n\nLooking forward to celebrating your success this Friday at 4 PM! It’ll be great to toast to your achievements and what’s next for you in this new role.\n\nCheers,  \nAlex",
+          "thinking": "The recipient is a colleague, Priya, who has recently received a significant promotion. The email should reflect warmth and camaraderie, celebrating her achievement while highlighting her contributions. I will weave in her new role, her successful project leadership, and her tenure at the company to reinforce her commitment and capability. The tone must be casual yet sincere, reflecting a friendly workplace culture. The structure will include a congratulatory subject line, a warm greeting, acknowledgment of her achievements and the upcoming celebration, and a friendly closing.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 5
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Colleague's name is Priya and she was promoted to Senior Director of Engineering",
+                  "present": true,
+                  "reasoning": "The email addresses Priya and congratulates her on her promotion to Senior Director of Engineering."
+                },
+                {
+                  "fact": "She led the successful cloud migration project last quarter",
+                  "present": true,
+                  "reasoning": "The email mentions her leadership during the cloud migration project last quarter."
+                },
+                {
+                  "fact": "She has been with the company for 7 years",
+                  "present": true,
+                  "reasoning": "The email states that she has been with the company for 7 years."
+                },
+                {
+                  "fact": "Team celebration is planned for Friday at 4 PM",
+                  "present": true,
+                  "reasoning": "The email confirms a celebration planned for Friday at 4 PM."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "warm and casual",
+              "detected_tone_description": "The email has a friendly and congratulatory tone, using informal language and expressions of warmth.",
+              "alignment_reasoning": "The email effectively conveys a warm and casual tone through its use of friendly language, personal anecdotes, and an enthusiastic invitation to celebrate. The use of 'Hi' and 'Cheers' adds to the casual feel, while the congratulatory message maintains warmth."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 5,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": false,
+                "placeholders_found": [],
+                "programmatic_score": 1.0
+              },
+              "llm_assessment": {
+                "score": 5,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and a well-structured body with logical flow. It also includes an appropriate sign-off. There are no placeholders present, making it a complete and professional email."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Congratulations on Your Well-Deserved Promotion!\n\nHi Priya,\n\nI just wanted to take a moment to congratulate you on your promotion to Senior Director of Engineering! This is such a well-deserved recognition of your hard work and leadership over the years, especially after the incredible success of the cloud migration project last quarter. \n\nYour dedication and expertise have truly made a difference in our team and the company as a whole, and I can’t think of anyone more deserving of this advancement. \n\nLooking forward to celebrating this fantastic achievement with you and the team this Friday at 4 PM! \n\nCheers,  \n[Your Name]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 0.75,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 0.75,
+              "total_facts": 4,
+              "facts_recalled": 3,
+              "evaluations": [
+                {
+                  "fact": "Colleague's name is Priya and she was promoted to Senior Director of Engineering",
+                  "present": true,
+                  "reasoning": "The email directly addresses Priya and congratulates her on her promotion to Senior Director of Engineering."
+                },
+                {
+                  "fact": "She led the successful cloud migration project last quarter",
+                  "present": true,
+                  "reasoning": "The email mentions her leadership and the success of the cloud migration project last quarter."
+                },
+                {
+                  "fact": "She has been with the company for 7 years",
+                  "present": false,
+                  "reasoning": "The email does not mention the duration of her tenure with the company."
+                },
+                {
+                  "fact": "Team celebration is planned for Friday at 4 PM",
+                  "present": true,
+                  "reasoning": "The email states that there is a celebration planned for Friday at 4 PM."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "warm and casual",
+              "detected_tone_description": "The email has a friendly and congratulatory tone, using informal language and expressions of warmth.",
+              "alignment_reasoning": "The email effectively conveys a warm and casual tone through its use of friendly language, personal congratulations, and an informal closing. Phrases like 'I just wanted to take a moment' and 'Cheers' contribute to the casual feel, while the congratulatory message adds warmth. Overall, it aligns very well with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 4,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and a well-structured body with logical flow. However, it contains a placeholder for the sender's name, which detracts from its professionalism."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "intent": "Inform a job applicant that they were not selected for the role",
+      "key_facts": [
+        "Applicant's name is David Park",
+        "Role was Senior Data Analyst",
+        "Over 200 applicants were considered",
+        "Encouraging him to apply for future openings"
+      ],
+      "tone": "polite but decisive",
+      "human_reference": "Subject: Update on Your Application — Senior Data Analyst Position\n\nDear David,\n\nThank you for taking the time to apply for the Senior Data Analyst position and for your interest in joining our team. We truly appreciate the effort you put into the interview process.\n\nAfter careful consideration of over 200 applicants, we have decided to move forward with another candidate whose experience more closely aligns with the specific needs of this role. This was not an easy decision, and your qualifications made a strong impression on our hiring panel.\n\nWe sincerely encourage you to keep an eye on our careers page and apply for future openings that match your skills and interests. We would welcome the opportunity to consider you again.\n\nWe wish you the very best in your career journey.\n\nKind regards,\nTaylor Kim\nTalent Acquisition Manager",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Update on Your Application for Senior Data Analyst Position\n\nDear David,\n\nThank you for your interest in the Senior Data Analyst position with our team. We truly appreciate the time you took to apply and share your qualifications with us.\n\nAfter careful consideration, I regret to inform you that we have chosen to move forward with another candidate for this role. With over 200 applicants, the selection process was highly competitive, and the decision was not an easy one.\n\nWe were impressed with your background and encourage you to apply for future openings that align with your skills and experience. We value the talent you bring and would love to see your application again.\n\nThank you once again for your interest in our company, and I wish you all the best in your job search.\n\nSincerely,  \nAlex",
+          "thinking": "The recipient, David Park, is a job applicant who has invested time and effort into the application process. He likely expects a respectful and clear communication regarding the outcome. The email must convey the decision firmly while also being polite and encouraging for future opportunities.\n\nThe key facts will be woven into the email by mentioning the competitive nature of the selection process with over 200 applicants, which underscores the difficulty of the decision. I will express gratitude for his interest in the role of Senior Data Analyst and gently inform him of his non-selection while encouraging him to apply for future openings, thus leaving the door open for potential opportunities.\n\nTone: Polite yet decisive; I will use respectful language and keep the sentences concise for clarity. \n\nStructure: Subject line indicating the nature of the email, a respectful greeting, a clear statement of the decision, acknowledgment of the competition, encouragement for future applications, and a warm closing.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 5
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Applicant's name is David Park",
+                  "present": true,
+                  "reasoning": "The email addresses the applicant as 'David', which confirms the name."
+                },
+                {
+                  "fact": "Role was Senior Data Analyst",
+                  "present": true,
+                  "reasoning": "The email explicitly mentions the 'Senior Data Analyst position'."
+                },
+                {
+                  "fact": "Over 200 applicants were considered",
+                  "present": true,
+                  "reasoning": "The email states that 'over 200 applicants' were considered during the selection process."
+                },
+                {
+                  "fact": "Encouraging him to apply for future openings",
+                  "present": true,
+                  "reasoning": "The email encourages the applicant to apply for future openings that align with his skills."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "polite but decisive",
+              "detected_tone_description": "The email maintains a polite tone throughout, expressing gratitude and encouragement, while decisively communicating the outcome of the application.",
+              "alignment_reasoning": "The email effectively balances politeness with a clear decision regarding the application outcome. It acknowledges the applicant's effort and qualifications while firmly stating that another candidate was selected. This aligns well with the target tone of being polite but decisive."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 5,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": false,
+                "placeholders_found": [],
+                "programmatic_score": 1.0
+              },
+              "llm_assessment": {
+                "score": 5,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and a well-structured body with logical paragraph flow. It also includes an appropriate sign-off. There are no placeholders present, making it a complete and professional email."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Update on Your Application for the Senior Data Analyst Position\n\nDear David Park,\n\nThank you for your interest in the Senior Data Analyst position at our company and for the time you invested in the interview process. We sincerely appreciate your effort and the insights you shared with us.\n\nAfter careful consideration of over 200 applicants, we regret to inform you that we have chosen to move forward with another candidate for this particular role. This decision was not an easy one, given the high caliber of applicants we received.\n\nWe encourage you to keep an eye on our careers page and consider applying for future openings that align with your skills and experience. We were impressed with your qualifications and would welcome the opportunity to see your application again.\n\nThank you once again for your interest in our team. We wish you all the best in your job search and future career endeavors.\n\nBest regards,\n\n[Your Name]  \n[Your Job Title]  \n[Your Company]  \n[Your Contact Information]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Applicant's name is David Park",
+                  "present": true,
+                  "reasoning": "The email directly addresses the applicant as David Park."
+                },
+                {
+                  "fact": "Role was Senior Data Analyst",
+                  "present": true,
+                  "reasoning": "The email specifies the position as Senior Data Analyst."
+                },
+                {
+                  "fact": "Over 200 applicants were considered",
+                  "present": true,
+                  "reasoning": "The email states that over 200 applicants were considered."
+                },
+                {
+                  "fact": "Encouraging him to apply for future openings",
+                  "present": true,
+                  "reasoning": "The email encourages the applicant to apply for future openings."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "polite but decisive",
+              "detected_tone_description": "The email maintains a polite tone throughout, expressing gratitude and encouragement, while decisively communicating the outcome of the application.",
+              "alignment_reasoning": "The email effectively balances politeness with a clear and firm message regarding the decision made. It acknowledges the candidate's efforts and qualifications while decisively stating that another candidate was chosen. This aligns well with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Job Title]",
+                  "[Your Company]",
+                  "[Your Contact Information]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 3,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in, which detracts from its professionalism."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "intent": "Request budget approval for a new AI-powered customer support tool",
+      "key_facts": [
+        "Tool is Zendesk AI Suite costing $45,000 annually",
+        "Projected to reduce ticket resolution time by 35%",
+        "Expected ROI of 280% within 18 months based on labor savings",
+        "Pilot program with 3 agents showed 40% improvement in first-response time"
+      ],
+      "tone": "direct and analytical",
+      "human_reference": "Subject: Budget Approval Request — Zendesk AI Suite ($45,000/year)\n\nDear CFO Martinez,\n\nI am requesting approval for the annual licensing of the Zendesk AI Suite at a cost of $45,000 per year.\n\nOur analysis projects a 35% reduction in average ticket resolution time, translating to an expected ROI of 280% within 18 months, driven primarily by labor cost savings and increased throughput.\n\nThese projections are supported by data from our 3-agent pilot program, which demonstrated a 40% improvement in first-response time over a 60-day trial period.\n\nI have attached the full cost-benefit analysis for your review. I would welcome the opportunity to walk through the numbers with you at your convenience.\n\nRespectfully,\nDana Okafor\nDirector of Customer Operations",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Request for Budget Approval: Zendesk AI Suite Implementation\n\nDear Taylor,\n\nI am writing to request your approval for a budget allocation of $45,000 annually to implement the Zendesk AI Suite, an AI-powered customer support tool that promises significant operational improvements.\n\nBased on our analysis, this tool is projected to reduce ticket resolution time by 35%, enhancing our overall customer service efficiency. Furthermore, the expected ROI is an impressive 280% within 18 months, primarily driven by labor savings resulting from improved workflow. During a recent pilot program involving three agents, we observed a 40% improvement in first-response time, which underscores the effectiveness of this solution in real-world applications.\n\nGiven these compelling metrics, I believe that investing in the Zendesk AI Suite will not only streamline our operations but also greatly enhance customer satisfaction. I welcome the opportunity to discuss this proposal in more detail and answer any questions you may have.\n\nThank you for considering this important investment.\n\nSincerely,  \nAlex",
+          "thinking": "The recipient is likely a senior finance executive or manager responsible for budget approvals. They will expect clear, data-driven communication that highlights the financial justification for the investment. \n\nI need to present the key facts logically: starting with the introduction of the tool, followed by its costs, benefits, and the pilot program results. The tone must be direct and analytical, utilizing precise language and focusing on measurable outcomes like the reduction in ticket resolution time and projected ROI.\n\nStructure: A straightforward subject line, a direct greeting, an opening paragraph that introduces the proposal, followed by detailed body paragraphs with the key facts seamlessly integrated, and a clear closing statement that invites questions or further discussion.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 5
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Tool is Zendesk AI Suite costing $45,000 annually",
+                  "present": true,
+                  "reasoning": "The email explicitly states the tool is the Zendesk AI Suite and requests a budget allocation of $45,000 annually."
+                },
+                {
+                  "fact": "Projected to reduce ticket resolution time by 35%",
+                  "present": true,
+                  "reasoning": "The email mentions that the tool is projected to reduce ticket resolution time by 35%."
+                },
+                {
+                  "fact": "Expected ROI of 280% within 18 months based on labor savings",
+                  "present": true,
+                  "reasoning": "The email states that the expected ROI is 280% within 18 months, primarily driven by labor savings."
+                },
+                {
+                  "fact": "Pilot program with 3 agents showed 40% improvement in first-response time",
+                  "present": true,
+                  "reasoning": "The email describes a pilot program involving three agents that showed a 40% improvement in first-response time."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "direct and analytical",
+              "detected_tone_description": "The email is direct and presents analytical data to support the budget request.",
+              "alignment_reasoning": "The email effectively communicates the request with clear metrics and analysis, demonstrating a logical approach to the proposal. It maintains a professional tone throughout, aligning well with the target tone of being direct and analytical."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 5,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": false,
+                "placeholders_found": [],
+                "programmatic_score": 1.0
+              },
+              "llm_assessment": {
+                "score": 5,
+                "structure_reasoning": "The email has a clear subject line that indicates the purpose of the message. It includes a proper greeting addressing the recipient by name and concludes with an appropriate sign-off. The body of the email is well-structured, presenting a logical flow of information with supporting metrics and a clear call to action. There are no placeholders present, making it a complete and professional email."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Request for Budget Approval: Zendesk AI Suite Implementation\n\nDear [Recipient's Name],\n\nI hope this message finds you well.\n\nI am writing to request your approval for the budget allocation of $45,000 annually for the implementation of the Zendesk AI Suite, a new AI-powered customer support tool. This investment is projected to significantly enhance our operational efficiency and customer satisfaction.\n\nBased on our analysis, the implementation of this tool is expected to reduce ticket resolution time by 35%. Furthermore, a pilot program conducted with three of our agents demonstrated a remarkable 40% improvement in first-response time. These enhancements are critical for improving our overall service delivery.\n\nFinancially, we anticipate a return on investment (ROI) of 280% within 18 months, primarily driven by labor savings associated with improved ticket handling efficiency. This robust ROI underscores the strategic advantage of adopting the Zendesk AI Suite.\n\nI believe that this investment will not only streamline our customer support processes but also strengthen our competitive position in the market. I look forward to your favorable consideration of this request.\n\nThank you for your attention to this matter.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Contact Information]  \n[Your Company]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Tool is Zendesk AI Suite costing $45,000 annually",
+                  "present": true,
+                  "reasoning": "The email explicitly states the cost of the Zendesk AI Suite as $45,000 annually."
+                },
+                {
+                  "fact": "Projected to reduce ticket resolution time by 35%",
+                  "present": true,
+                  "reasoning": "The email mentions that the implementation of the tool is expected to reduce ticket resolution time by 35%."
+                },
+                {
+                  "fact": "Expected ROI of 280% within 18 months based on labor savings",
+                  "present": true,
+                  "reasoning": "The email states that a return on investment (ROI) of 280% is anticipated within 18 months, primarily driven by labor savings."
+                },
+                {
+                  "fact": "Pilot program with 3 agents showed 40% improvement in first-response time",
+                  "present": true,
+                  "reasoning": "The email refers to a pilot program conducted with three agents that demonstrated a 40% improvement in first-response time."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "direct and analytical",
+              "detected_tone_description": "The email maintains a professional and analytical tone, presenting data and projections clearly while making a direct request for budget approval.",
+              "alignment_reasoning": "The email effectively communicates the request with a focus on data-driven analysis, including specific metrics and anticipated ROI, which aligns well with the target tone of being direct and analytical. There are no significant deviations from this tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Contact Information]",
+                  "[Your Company]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 3,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in before sending, which detracts from its professionalism."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "intent": "Follow up after an initial sales discovery call",
+      "key_facts": [
+        "Call was held on Tuesday, November 5th",
+        "Prospect expressed interest in the Enterprise plan",
+        "Main pain point is manual reporting consuming 15 hours per week",
+        "Next step is a live product demo scheduled for November 12th"
+      ],
+      "tone": "enthusiastic and persuasive",
+      "human_reference": "Subject: Great Connecting on Tuesday — Your Demo is Locked In!\n\nHi Rachel,\n\nIt was fantastic speaking with you on Tuesday, November 5th! I really appreciated you sharing the challenges your team is facing, and I'm excited about the opportunity to help.\n\nI completely understand how frustrating it must be to lose 15 hours every week to manual reporting — that's nearly two full workdays! The good news is that our Enterprise plan is specifically designed to eliminate that bottleneck and give your team those hours back.\n\nAs we discussed, I've locked in your live product demo for November 12th. During the session, I'll walk you through exactly how the platform automates the reporting workflows you described, so you can see the impact firsthand.\n\nIn the meantime, feel free to reach out if any questions come up. I'm looking forward to showing you what's possible!\n\nBest,\nCasey Wright\nAccount Executive",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Excited to Follow Up on Our Discovery Call!\n\nDear Taylor,\n\nI hope this message finds you well! I wanted to take a moment to follow up after our insightful discovery call on Tuesday, November 5th. It was great to learn more about your business and the challenges you are currently facing.\n\nI’m particularly excited about your interest in our Enterprise plan, especially considering the significant time you're currently spending on manual reporting—15 hours a week is quite a commitment! Our solution is designed to streamline that process, enabling your team to focus on what truly matters and drive your business forward.\n\nI’m looking forward to our live product demo scheduled for November 12th, where we can explore how our platform can specifically address your needs and help alleviate those reporting burdens. If you have any questions or topics you’d like us to cover during the demo, please feel free to share them!\n\nThank you again for your time and interest. I can't wait to connect next week!\n\nBest regards,  \nAlex",
+          "thinking": "The recipient is a prospective client who has recently engaged in a discovery call. They likely expect a follow-up that reiterates key points discussed, expresses enthusiasm about their interest, and creates anticipation for the upcoming demo. \n\nI will weave in the details of the November 5th call, specifically highlighting their interest in the Enterprise plan and their pain point regarding manual reporting. This will reinforce the value of our solution as we prepare for the demo on November 12th.\n\nThe tone should be enthusiastic and persuasive — I'll use language that conveys excitement about their potential partnership and the solutions we offer. \n\nStructure: \n- Subject line should indicate a follow-up and express excitement.\n- Opening should acknowledge the previous call.\n- Body paragraphs will recap their interest and pain point while building anticipation for the demo.\n- Closing will encourage further communication and express eagerness for the demo.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 5
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Call was held on Tuesday, November 5th",
+                  "present": true,
+                  "reasoning": "The email explicitly mentions the call date as Tuesday, November 5th."
+                },
+                {
+                  "fact": "Prospect expressed interest in the Enterprise plan",
+                  "present": true,
+                  "reasoning": "The email states that the prospect is interested in the Enterprise plan."
+                },
+                {
+                  "fact": "Main pain point is manual reporting consuming 15 hours per week",
+                  "present": true,
+                  "reasoning": "The email references the prospect's significant time spent on manual reporting, specifically mentioning 15 hours a week."
+                },
+                {
+                  "fact": "Next step is a live product demo scheduled for November 12th",
+                  "present": true,
+                  "reasoning": "The email confirms that a live product demo is scheduled for November 12th."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "enthusiastic and persuasive",
+              "detected_tone_description": "The email conveys a positive and engaging tone, expressing excitement about the discovery call and the upcoming demo. It uses enthusiastic language and emphasizes the benefits of the product, which aligns well with a persuasive approach.",
+              "alignment_reasoning": "The email effectively communicates enthusiasm through phrases like 'I’m particularly excited' and 'I can't wait to connect next week!' It also persuades by highlighting the value of the product in addressing the recipient's challenges. Overall, the tone is very much aligned with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 5,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": false,
+                "placeholders_found": [],
+                "programmatic_score": 1.0
+              },
+              "llm_assessment": {
+                "score": 5,
+                "structure_reasoning": "The email has a clear subject line that indicates the purpose of the message. It includes a proper greeting addressing the recipient by name and a professional sign-off. The body of the email is well-structured with logical paragraph flow, discussing the discovery call, the interest in the Enterprise plan, and the upcoming demo. There are no placeholders present, making it a complete and polished email."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Excited to Follow Up After Our Discovery Call!\n\nDear [Prospect's Name],\n\nI hope this message finds you well! I wanted to take a moment to follow up on our engaging discovery call from Tuesday, November 5th. I truly appreciated the opportunity to learn more about your organization and your interest in our Enterprise plan.\n\nIt was insightful to hear about your current challenges, particularly the manual reporting that is consuming 15 hours of your week. I believe our solution can significantly streamline this process and free up valuable time for your team to focus on more strategic initiatives.\n\nI'm looking forward to our live product demo scheduled for November 12th, where we can delve deeper into how our Enterprise plan can address your specific needs and alleviate those pain points. I’m confident that you will see the value and efficiency our solution can bring to your organization.\n\nIf you have any questions or specific topics you’d like to cover during the demo, please feel free to share them with me. I’m here to ensure that we make the most of our time together!\n\nThank you once again for your interest, and I can’t wait to reconnect next week.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Phone Number]  \n[Your Email]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Call was held on Tuesday, November 5th",
+                  "present": true,
+                  "reasoning": "The email explicitly mentions the discovery call took place on Tuesday, November 5th."
+                },
+                {
+                  "fact": "Prospect expressed interest in the Enterprise plan",
+                  "present": true,
+                  "reasoning": "The email states that the prospect showed interest in the Enterprise plan."
+                },
+                {
+                  "fact": "Main pain point is manual reporting consuming 15 hours per week",
+                  "present": true,
+                  "reasoning": "The email references the prospect's challenge with manual reporting taking 15 hours per week."
+                },
+                {
+                  "fact": "Next step is a live product demo scheduled for November 12th",
+                  "present": true,
+                  "reasoning": "The email confirms that a live product demo is scheduled for November 12th."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "enthusiastic and persuasive",
+              "detected_tone_description": "The email conveys a positive and engaging tone, expressing excitement about the follow-up and the upcoming demo. It effectively highlights the benefits of the solution and encourages further communication.",
+              "alignment_reasoning": "The email successfully captures an enthusiastic and persuasive tone through its use of positive language, expressions of appreciation, and a confident outlook on the product's benefits. The structure and content align well with the target tone, making it highly effective."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Company]",
+                  "[Your Phone Number]",
+                  "[Your Email]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 3,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and a well-structured body with logical flow. However, it contains multiple placeholders that need to be filled in before sending, which detracts from its professionalism."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 8,
+      "intent": "Announce a new hybrid work policy to all employees",
+      "key_facts": [
+        "Effective January 1, 2025",
+        "Employees must be in-office a minimum of 3 days per week (Tuesday, Wednesday, Thursday)",
+        "Remote work is allowed on Mondays and Fridays",
+        "Exceptions require manager approval and HR documentation"
+      ],
+      "tone": "direct and authoritative",
+      "human_reference": "Subject: Updated Hybrid Work Policy — Effective January 1, 2025\n\nDear Team,\n\nI am writing to inform you of an important update to our hybrid work policy, effective January 1, 2025.\n\nGoing forward, all employees are required to be in the office a minimum of three days per week, specifically Tuesday, Wednesday, and Thursday. Remote work will continue to be available on Mondays and Fridays.\n\nAny exceptions to this schedule must be approved by your direct manager and documented through HR. Please reach out to your manager or the HR team if you have questions about the exception process.\n\nThis policy reflects our commitment to fostering collaboration and maintaining the strong team culture that defines our organization. We appreciate your cooperation as we implement this change.\n\nRegards,\nExecutive Leadership Team",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Announcement of New Hybrid Work Policy\n\nDear Team,\n\nI am writing to inform you of the new hybrid work policy, which will take effect on January 1, 2025. This policy is designed to balance our organizational goals with the flexibility many of you have come to appreciate.\n\nUnder the new guidelines, all employees are required to be in the office a minimum of three days per week, specifically on Tuesday, Wednesday, and Thursday. Remote work will be permitted on Mondays and Fridays. \n\nPlease note that any exceptions to this policy must be approved by your manager and documented with Human Resources. It is imperative that we adhere to these new standards to foster collaboration and maintain our company culture.\n\nThank you for your attention to this important update. Should you have any questions, please do not hesitate to reach out.\n\nSincerely,  \nJordan",
+          "thinking": "The recipient is the entire employee base, which includes diverse roles and responsibilities. They will expect clear, straightforward communication regarding the new policy, with emphasis on compliance and structure. The email should communicate the effective date, the specific in-office requirements, and the conditions for exceptions in a direct manner.\n\nThe tone must be authoritative, using precise language and a formal register, avoiding any unnecessary embellishments. The email structure will include a clear subject line, a formal greeting, a short introduction, followed by a detailed explanation of the policy, and a concluding statement that reinforces the importance of adherence to this policy.\n\nStructure: Subject line will be straightforward, the opening will set the context, the body will clearly outline the policy details, and the closing will reinforce the message.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 5
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Effective January 1, 2025",
+                  "present": true,
+                  "reasoning": "The email states that the new hybrid work policy will take effect on January 1, 2025."
+                },
+                {
+                  "fact": "Employees must be in-office a minimum of 3 days per week (Tuesday, Wednesday, Thursday)",
+                  "present": true,
+                  "reasoning": "The email specifies that employees are required to be in the office a minimum of three days per week on Tuesday, Wednesday, and Thursday."
+                },
+                {
+                  "fact": "Remote work is allowed on Mondays and Fridays",
+                  "present": true,
+                  "reasoning": "The email mentions that remote work will be permitted on Mondays and Fridays."
+                },
+                {
+                  "fact": "Exceptions require manager approval and HR documentation",
+                  "present": true,
+                  "reasoning": "The email states that any exceptions to the policy must be approved by the manager and documented with Human Resources."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "direct and authoritative",
+              "detected_tone_description": "The email conveys a clear and authoritative message regarding the new hybrid work policy, using direct language and specific guidelines.",
+              "alignment_reasoning": "The email effectively communicates the policy changes in a straightforward manner, outlining expectations and requirements without ambiguity. The use of imperative language, such as 'all employees are required' and 'it is imperative that we adhere,' reinforces the authoritative tone. Overall, the email aligns well with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 5,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": false,
+                "placeholders_found": [],
+                "programmatic_score": 1.0
+              },
+              "llm_assessment": {
+                "score": 5,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. The body is well-structured with logical paragraph flow, clearly outlining the new policy and its implications. There are no placeholders present, making it a complete and professional communication."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Announcement of New Hybrid Work Policy\n\nDear Team,\n\nI am writing to inform you of the implementation of a new hybrid work policy that will take effect on January 1, 2025. This policy is designed to enhance collaboration and maintain our strong workplace culture while providing flexibility for our employees.\n\nUnder the new policy, all employees will be required to work in the office a minimum of three days per week, specifically on Tuesday, Wednesday, and Thursday. Remote work will be permitted on Mondays and Fridays. \n\nPlease note that any exceptions to this policy will require prior approval from your manager, along with the necessary documentation from Human Resources.\n\nWe believe this approach will foster a more engaged and productive work environment while also accommodating the diverse needs of our workforce. \n\nThank you for your attention to this important update. Should you have any questions or require further clarification, please do not hesitate to reach out.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 4,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Effective January 1, 2025",
+                  "present": true,
+                  "reasoning": "The email states that the new policy will take effect on January 1, 2025."
+                },
+                {
+                  "fact": "Employees must be in-office a minimum of 3 days per week (Tuesday, Wednesday, Thursday)",
+                  "present": true,
+                  "reasoning": "The email specifies that employees are required to work in the office a minimum of three days per week on Tuesday, Wednesday, and Thursday."
+                },
+                {
+                  "fact": "Remote work is allowed on Mondays and Fridays",
+                  "present": true,
+                  "reasoning": "The email mentions that remote work will be permitted on Mondays and Fridays."
+                },
+                {
+                  "fact": "Exceptions require manager approval and HR documentation",
+                  "present": true,
+                  "reasoning": "The email states that exceptions to the policy will require prior approval from the manager and necessary documentation from HR."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 4,
+              "target_tone": "direct and authoritative",
+              "detected_tone_description": "The email maintains a formal and informative tone, clearly outlining the new policy and its requirements.",
+              "alignment_reasoning": "The email effectively communicates the new hybrid work policy with clarity and authority, specifying expectations and procedures. However, it could be more direct by eliminating softer phrases like 'we believe' and 'should you have any questions.' Overall, it is mostly aligned with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Company]",
+                  "[Your Contact Information]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 4,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in, which detracts from its professionalism. The body is well-structured with logical paragraph flow, but the presence of placeholders indicates it is not yet production-ready."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 9,
+      "intent": "Reschedule a client meeting due to an internal conflict",
+      "key_facts": [
+        "Original meeting was scheduled for Thursday, November 14th at 2:00 PM",
+        "Proposing to reschedule to Monday, November 18th at 10:00 AM",
+        "The agenda (product roadmap review) remains unchanged",
+        "Will send updated calendar invite once confirmed"
+      ],
+      "tone": "apologetic and professional",
+      "human_reference": "Subject: Request to Reschedule Our November 14th Meeting\n\nDear Ms. Nakamura,\n\nI hope you are doing well. I am writing to sincerely apologize for the need to reschedule our meeting originally planned for Thursday, November 14th at 2:00 PM. An internal scheduling conflict has arisen that unfortunately cannot be moved.\n\nI would like to propose rescheduling to Monday, November 18th at 10:00 AM, if that works with your calendar. The agenda for our product roadmap review remains unchanged, so we will pick up right where we planned.\n\nOnce you confirm the new time, I will promptly send over an updated calendar invitation.\n\nI apologize again for any inconvenience this may cause, and I truly appreciate your flexibility.\n\nWarm regards,\nRiley Cooper\nSenior Account Manager",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Request to Reschedule Our Meeting\n\nDear [Client's Name],\n\nI hope this message finds you well. I am writing to inform you that, due to an internal conflict, I will need to reschedule our meeting originally set for Thursday, November 14th at 2:00 PM. I sincerely apologize for any inconvenience this may cause.\n\nI would like to propose Monday, November 18th at 10:00 AM as a new meeting time. Please rest assured that the agenda for our product roadmap review will remain unchanged, allowing us to stay on track with our discussions.\n\nOnce you confirm this new time, I will promptly send out an updated calendar invite. Thank you for your understanding, and I look forward to our conversation.\n\nBest regards,  \n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+          "thinking": "The recipient is likely a client who values professionalism and punctuality. They may have rearranged their schedule for the original meeting, so an apologetic tone is essential. I will acknowledge the inconvenience caused by the rescheduling, clearly state the new proposed time, and confirm that the agenda remains unchanged to ensure continuity in our discussions.\n\nThe vocabulary should be formal yet warm, using phrases like \"I apologize for any inconvenience,\" \"I appreciate your understanding,\" and maintaining a respectful tone throughout. \n\nStructure: \n- Subject line should convey the purpose of the email clearly.\n- Greeting should be professional.\n- The body will include an apology, the new meeting details, affirmation of the unchanged agenda, and a note about the calendar invite.\n- A courteous closing to maintain a positive relationship.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Original meeting was scheduled for Thursday, November 14th at 2:00 PM",
+                  "present": true,
+                  "reasoning": "The email states the original meeting time and date accurately."
+                },
+                {
+                  "fact": "Proposing to reschedule to Monday, November 18th at 10:00 AM",
+                  "present": true,
+                  "reasoning": "The email clearly proposes the new meeting time and date."
+                },
+                {
+                  "fact": "The agenda (product roadmap review) remains unchanged",
+                  "present": true,
+                  "reasoning": "The email confirms that the agenda will remain the same."
+                },
+                {
+                  "fact": "Will send updated calendar invite once confirmed",
+                  "present": true,
+                  "reasoning": "The email states that an updated calendar invite will be sent upon confirmation."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "apologetic and professional",
+              "detected_tone_description": "The email conveys a sincere apology for the need to reschedule and maintains a professional demeanor throughout.",
+              "alignment_reasoning": "The email effectively communicates an apology for the inconvenience caused by rescheduling, while also proposing a new meeting time and reassuring the client about the agenda. The language is formal and respectful, aligning well with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Company]",
+                  "[Your Contact Information]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 3,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in, which detracts from its professionalism. The body is well-structured with logical flow, but the presence of placeholders indicates it is not yet ready for production."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Request to Reschedule Our Meeting\n\nDear [Client's Name],\n\nI hope this message finds you well. I am reaching out to discuss our upcoming meeting originally scheduled for Thursday, November 14th at 2:00 PM.\n\nDue to an internal scheduling conflict, I regret to inform you that I will need to reschedule our meeting. I sincerely apologize for any inconvenience this may cause. I would like to propose moving our meeting to Monday, November 18th at 10:00 AM. \n\nPlease rest assured that the agenda, which focuses on our product roadmap review, will remain unchanged. Once we confirm the new time, I will promptly send you an updated calendar invite.\n\nThank you for your understanding, and I look forward to our discussion.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Original meeting was scheduled for Thursday, November 14th at 2:00 PM",
+                  "present": true,
+                  "reasoning": "The email states the original meeting date and time accurately."
+                },
+                {
+                  "fact": "Proposing to reschedule to Monday, November 18th at 10:00 AM",
+                  "present": true,
+                  "reasoning": "The email clearly proposes the new date and time for the meeting."
+                },
+                {
+                  "fact": "The agenda (product roadmap review) remains unchanged",
+                  "present": true,
+                  "reasoning": "The email confirms that the agenda will remain the same."
+                },
+                {
+                  "fact": "Will send updated calendar invite once confirmed",
+                  "present": true,
+                  "reasoning": "The email states that an updated calendar invite will be sent once the new time is confirmed."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "apologetic and professional",
+              "detected_tone_description": "The email conveys a sincere apology for the scheduling conflict while maintaining a professional demeanor throughout.",
+              "alignment_reasoning": "The email effectively communicates regret for the inconvenience caused by the rescheduling, uses polite language, and maintains a formal structure, which aligns well with the target tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Position]",
+                  "[Your Company]",
+                  "[Your Contact Information]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 4,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. The body is well-structured with logical paragraph flow. However, it contains multiple placeholders that need to be filled in before sending, which detracts from its professionalism."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 10,
+      "intent": "Ask a teammate from the data team for help with analytics integration",
+      "key_facts": [
+        "Need help integrating Google Analytics 4 event tracking into the new checkout flow",
+        "Launch deadline is November 22nd",
+        "Estimated effort is about 4-6 hours of their time",
+        "Product manager Lisa has already approved the cross-team collaboration"
+      ],
+      "tone": "collaborative and respectful",
+      "human_reference": "Subject: Quick Favor — GA4 Integration Help for Checkout Flow\n\nHi Raj,\n\nI hope your week is going well! I'm reaching out because I could really use your expertise on something.\n\nWe're in the final stretch of building the new checkout flow, and I need some help integrating Google Analytics 4 event tracking into it. You're the first person I thought of given your experience with GA4.\n\nThe estimated effort is about 4-6 hours, and our launch deadline is November 22nd, so there's a reasonable window to fit it in. I've already checked with Lisa (our PM), and she's fully on board with the cross-team collaboration.\n\nI'd love to hop on a quick call to walk you through the specifics whenever you have a free moment. No pressure at all — if the timing doesn't work, I completely understand.\n\nThanks so much for considering it!\n\nBest,\nAvery\nFrontend Engineering",
+      "results": {
+        "advanced": {
+          "generated_email": "Subject: Request for Assistance with Google Analytics 4 Integration\n\nHi Jamie,\n\nI hope you're doing well. I’m reaching out to see if you could assist with integrating Google Analytics 4 event tracking into our new checkout flow. Given the importance of this feature for our upcoming launch on November 22nd, your expertise would be invaluable.\n\nI estimate that this task would require about 4-6 hours of your time. Lisa has already given her approval for this cross-team collaboration, so we're all set on that front.\n\nIf you're available to help, I would greatly appreciate it. Please let me know if you have any questions or need further details. I’m looking forward to working together on this!\n\nBest regards,  \nAlex",
+          "thinking": "The recipient is likely a teammate from the data team, who may have a busy schedule but will appreciate a collaborative approach. The email needs to convey respect for their time and expertise while clearly outlining the request for assistance with Google Analytics 4 integration.\n\nI will weave in the necessity of the integration, the launch deadline, the estimated effort required, and the fact that Lisa has already approved this collaboration, which adds legitimacy to the request. The tone should be collaborative and respectful, emphasizing teamwork and appreciation.\n\nStructure: Clear subject line, warm greeting, concise introduction of the request, details about the deadline and effort, mention of Lisa's approval, and a polite closing with an invitation for further discussion.",
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 5
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Need help integrating Google Analytics 4 event tracking into the new checkout flow",
+                  "present": true,
+                  "reasoning": "The email explicitly requests assistance with integrating Google Analytics 4 event tracking into the new checkout flow."
+                },
+                {
+                  "fact": "Launch deadline is November 22nd",
+                  "present": true,
+                  "reasoning": "The email mentions the upcoming launch date as November 22nd."
+                },
+                {
+                  "fact": "Estimated effort is about 4-6 hours of their time",
+                  "present": true,
+                  "reasoning": "The email states that the task would require about 4-6 hours of the recipient's time."
+                },
+                {
+                  "fact": "Product manager Lisa has already approved the cross-team collaboration",
+                  "present": true,
+                  "reasoning": "The email confirms that Lisa has given her approval for the cross-team collaboration."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "collaborative and respectful",
+              "detected_tone_description": "The email maintains a collaborative and respectful tone throughout, expressing appreciation for the recipient's expertise and willingness to work together.",
+              "alignment_reasoning": "The email effectively communicates a request for assistance while acknowledging the recipient's skills and the importance of collaboration. The use of polite language and a positive closing further enhances the respectful tone."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 5,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": false,
+                "placeholders_found": [],
+                "programmatic_score": 1.0
+              },
+              "llm_assessment": {
+                "score": 5,
+                "structure_reasoning": "The email has a clear subject line that indicates the purpose of the message. It includes a proper greeting and a well-structured body that flows logically, detailing the request and context. The sign-off is appropriate and professional. There are no placeholders present, making it a complete and polished email."
+              }
+            }
+          }
+        },
+        "basic": {
+          "generated_email": "Subject: Request for Assistance with Google Analytics 4 Integration\n\nHi [Teammate's Name],\n\nI hope this message finds you well. I’m reaching out to request your expertise in integrating Google Analytics 4 event tracking into our new checkout flow. As we aim for a successful launch by November 22nd, your insights would be invaluable to ensure we get this done effectively.\n\nI estimate that the integration will require about 4-6 hours of your time. Lisa, our product manager, has already approved this cross-team collaboration, so I believe this could be a great opportunity for us to work together.\n\nPlease let me know if you’re available to assist with this integration. I appreciate your help and look forward to collaborating with you!\n\nBest regards,\n\n[Your Name]  \n[Your Job Title]  \n[Your Contact Information]  \n[Your Company]",
+          "thinking": null,
+          "scores": {
+            "fact_recall": 1.0,
+            "tone_adherence": 5,
+            "format_adherence": 4
+          },
+          "metric_details": {
+            "fact_recall": {
+              "metric_name": "Fact Recall & Integration Accuracy",
+              "score": 1.0,
+              "total_facts": 4,
+              "facts_recalled": 4,
+              "evaluations": [
+                {
+                  "fact": "Need help integrating Google Analytics 4 event tracking into the new checkout flow",
+                  "present": true,
+                  "reasoning": "The email explicitly requests assistance with integrating Google Analytics 4 event tracking into the new checkout flow."
+                },
+                {
+                  "fact": "Launch deadline is November 22nd",
+                  "present": true,
+                  "reasoning": "The email mentions the aim for a successful launch by November 22nd."
+                },
+                {
+                  "fact": "Estimated effort is about 4-6 hours of their time",
+                  "present": true,
+                  "reasoning": "The email states that the integration will require about 4-6 hours of the recipient's time."
+                },
+                {
+                  "fact": "Product manager Lisa has already approved the cross-team collaboration",
+                  "present": true,
+                  "reasoning": "The email confirms that Lisa, the product manager, has approved the cross-team collaboration."
+                }
+              ]
+            },
+            "tone_adherence": {
+              "metric_name": "Tone Adherence Score",
+              "score": 5,
+              "target_tone": "collaborative and respectful",
+              "detected_tone_description": "The email maintains a collaborative and respectful tone throughout, expressing appreciation for the recipient's expertise and emphasizing teamwork.",
+              "alignment_reasoning": "The request is framed positively, highlighting the value of the recipient's insights and the approval from the product manager, which fosters a sense of collaboration. The language is polite and professional, reinforcing respect."
+            },
+            "format_adherence": {
+              "metric_name": "Structural Professionalism & Formatting",
+              "score": 4,
+              "programmatic_checks": {
+                "has_subject_line": true,
+                "has_greeting": true,
+                "has_sign_off": true,
+                "has_placeholders": true,
+                "placeholders_found": [
+                  "[Your Name]",
+                  "[Your Job Title]",
+                  "[Your Contact Information]",
+                  "[Your Company]"
+                ],
+                "programmatic_score": 0.75
+              },
+              "llm_assessment": {
+                "score": 3,
+                "structure_reasoning": "The email has a clear subject line, a proper greeting, and an appropriate sign-off. However, it contains multiple placeholders that need to be filled in before sending, which detracts from its professionalism."
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "overall_averages": {
+    "advanced": {
+      "fact_recall": 1.0,
+      "tone_adherence": 4.9,
+      "format_adherence": 4.7
+    },
+    "basic": {
+      "fact_recall": 0.975,
+      "tone_adherence": 4.8,
+      "format_adherence": 4.0
+    }
+  }
+}
