@@ -1,0 +1,36 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# SQLite database
+*.db
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Evaluation outputs (optional: remove these lines if you want to commit results)
+# evaluation_results.csv
+# evaluation_results.json
+
+# OS files
+.DS_Store
+Thumbs.db
